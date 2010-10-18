@@ -3,8 +3,8 @@ A POModoro Activities Register
 initial scope:
   - Tasks
     . Creation, editing, deleting, canceling, rejecting;
-    . Scheduling, re-scheduling, association with pomodoro, estimating (in pomodoros);
-    . associating with projects, dependency..
+    . Scheduling, re-scheduling, association with pomodoro, estimating (in pomodoros), re-estimating;
+    . associating with projects, dependency, aggregation (?).
 
   - Timer
     . Pomodoro: creation, starting, canceling, task association, tag association;
