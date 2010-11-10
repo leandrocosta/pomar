@@ -28,3 +28,15 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+
+# According to https://github.com/aslakhellesoy/cucumber-rails:
+# Before you can use the generator, add the necessary gems to your project’s Gemfile as follows:
+
+gem 'capybara'
+gem 'database_cleaner'
+gem 'cucumber-rails'
+gem 'cucumber'
+gem 'rspec-rails'
+gem 'spork'
+gem 'launchy'
