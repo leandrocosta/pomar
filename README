@@ -1,0 +1,18 @@
+A POModoro Activities Register
+
+initial scope:
+  - Tasks
+    . Creation, editing, deleting, canceling, rejecting;
+    . Scheduling, re-scheduling, association with pomodoro, estimating (in pomodoros), re-estimating;
+    . associating with projects, dependency, aggregation (?).
+
+  - Timer
+    . Pomodoro: creation, starting, canceling, task association, tag association;
+    . Short break: starting, canceling (?);
+    . Longer break: starting, calceling (?).
+    . Internal and external interruptions registering.
+
+  - Reports
+    . Pomodoros by time, by tag, by project;
+    . Interruptions by of time, by project;
+    . Estimates x real pomodoros.
