@@ -16,7 +16,10 @@ require 'cucumber/web/tableish'
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
-require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
+# According to https://rspec.lighthouseapp.com/projects/16211-cucumber/tickets/674:
+# jnicklas of capybara reports that it's a problem where cucumber monkey-patches a Capybara method which no longer exists.
+# And suggests that commenting out the following like in env.rb fixes the problem:
+#require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
