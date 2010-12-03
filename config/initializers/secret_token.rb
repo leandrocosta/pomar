@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Pomar::Application.config.secret_token = 'af1b8336b7c65dcf6bb3075d90cb1db6d74c672bb00a23faa65e181702ef73a29397eaf470d2bbbd614f0ea9436fa0e5d6501e886423d210b3d04bd7462ea614'
+Pomar::Application.config.secret_token = 'ca8dcf9be1d43be8ac3fd892961d1e69ab35e5577479bcdf7c4f61f7b78affb8bb992e9303eeaa9b02b80b617b21704d1662b1ea139fdd3dce97f6a3e50dd8c2'

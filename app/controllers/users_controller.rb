@@ -27,12 +27,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-      @users = User.all
-
-    respond_to do |format|
-      format.html
-      format.xml { render :xml => @users }
-    end
-  end
+#  def index
+#      @users = User.all
+#
+#    respond_to do |format|
+#      format.html
+#      format.xml { render :xml => @users }
+#    end
+#  end
 end

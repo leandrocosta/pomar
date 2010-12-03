@@ -1,4 +1,4 @@
-Feature: Sign Up
+Feature: Sign Up!
 	In order to sign up for an account
 	As a guest
 	I need to be able to register
@@ -32,16 +32,6 @@ Feature: Sign Up
     And I press "Create user"
     Then I should see "Email is invalid"
 
-  Scenario: Registering with valid values for fields
-    Given I am on the signup page
-    When I fill in "Name" with "John"
-    And I fill in "E-mail" with "john@sub.domain"
-    And I fill in "Username" with "john"
-    And I fill in "Password" with "mypass"
-    And I fill in "Confirmation" with "mypass"
-    And I press "Create user"
-    Then I should see "User was successfully created"
-
   Scenario: Registering with duplicate e-mail
     Given there is a user with e-mail "john@sub.domain"
     And I am on the signup page
@@ -63,3 +53,13 @@ Feature: Sign Up
     And I fill in "Confirmation" with "mypass"
     And I press "Create user"
     Then I should see "Username has already been taken"
+
+  Scenario: Registering with valid values for fields
+    Given I am on the signup page
+    When I fill in "Name" with "John"
+    And I fill in "E-mail" with "john@sub.domain"
+    And I fill in "Username" with "john"
+    And I fill in "Password" with "mypass"
+    And I fill in "Confirmation" with "mypass"
+    And I press "Create user"
+    Then I should see "User was successfully created"

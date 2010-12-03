@@ -11,9 +11,9 @@ describe UsersController do
 
     it "should have the right title" do
       get 'new'
-      #response.should have_selector("title", :content => "Sign up")
+      response.should have_selector("title", :content => "Pomar: Sign Up!")
       #response.should have_xpath(".//title", :text => "Sign Up!")
-      response.should assert_select("title", "Pomar: Sign Up!")
+      #response.should assert_select("title", "Pomar: Sign Up!")
     end
   end
 end
