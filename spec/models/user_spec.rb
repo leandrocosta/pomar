@@ -5,23 +5,65 @@ describe User do
     @user = User.new
     @user.name = 'John'
     @user.username = 'john'
-    @user.hashed_password = 'HASHED_PASSWORD'
-    @user.email = 'mail@domain'
+    @user.password = 'password'
+    @user.password_confirmation = 'password'
+    @user.email = 'mail@sub.domain'
   end
 
-  it "should have a name" do
-    @user.name.should be == 'John'
+  it "should validate the presence of name" do
+    @user.name = nil
+    @user.should_not be_valid
   end
 
-  it "should have a username" do
-    @user.username.should be == 'john'
+  it "should validate the presence of email" do
+    @user.email = nil
+    @user.should_not be_valid
   end
 
-  it "should have a hashed_password" do
-    @user.hashed_password.should be == 'HASHED_PASSWORD'
+  it "should validate the format of email" do
+    @user.email = 'invalid@email'
+    @user.should_not be_valid
   end
 
-  it "should have an e-mail" do
-    @user.email.should be == 'mail@domain'
+  it "should validate the presence of username" do
+    @user.username = nil
+    @user.should_not be_valid
+  end
+
+  it "should validate the presence of password" do
+    @user.password = nil
+    @user.should_not be_valid
+  end
+
+  it "should validate the password's confirmation" do
+    @user.password_confirmation = ''
+    @user.should_not be_valid
+  end
+
+  it "should validate the uniqueness of username" do
+    User.create!(
+    :name => 'John2',
+    :username => 'john',
+    :password => 'password2',
+    :password_confirmation => 'password2',
+    :email => 'mail2@sub.domain');
+    @user.should_not be_valid
+  end
+
+  it "should validate data correctly" do
+    @user.should be_valid
+  end
+
+  it "should hash the password with a salt before create" do
+    @user.before_create
+    @user.hashed_password.should eql User.encrypt(@user.password, @user.password_salt)
+  end
+
+  it "should hash the password with a salt before update" do
+    @user.before_create
+    @user.password = 'new password'
+    @user.password_confirmation = 'new password'
+    @user.before_update
+    @user.hashed_password.should eql User.encrypt(@user.password, @user.password_salt)
   end
 end
