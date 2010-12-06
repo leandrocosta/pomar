@@ -66,4 +66,9 @@ describe User do
     @user.before_update
     @user.hashed_password.should eql User.encrypt(@user.password, @user.password_salt)
   end
+
+  it "should create a confirmation key before create" do
+    @user.before_create
+    @user.confirmation_key.key.should eql User.encrypt(@user.email, @user.password_salt)
+  end
 end
