@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101128184134) do
+ActiveRecord::Schema.define(:version => 20101206014302) do
 
   create_table "users", :force => true do |t|
     t.string   "name",            :limit => 60
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20101128184134) do
     t.string   "hashed_password", :limit => 60
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_salt",   :limit => 40
   end
 
 end

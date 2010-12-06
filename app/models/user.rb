@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :password,  :presence => true, :confirmation => true, :length => { :within => 6..20 }
 
   def before_create
-    @password_salt = Digest::SHA1.hexdigest(Time.now.to_s) if @password_salt.blank?
+    make_salt if @password_salt.blank?
     @hashed_password = User.encrypt(@password, @password_salt)
   end
 
@@ -18,7 +18,11 @@ class User < ActiveRecord::Base
     @hashed_password = User.encrypt(@password, @password_salt)
   end
 
+  def make_salt
+    @password_salt = self.username + Time.now.to_s
+  end
+
   def self.encrypt(password, salt)
-    Digest::SHA1.hexdigest(password+salt)
+    Digest::SHA1.hexdigest(password + salt)
   end
 end
