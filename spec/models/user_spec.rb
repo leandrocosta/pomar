@@ -68,7 +68,10 @@ describe User do
   end
 
   it "should create a confirmation key before create" do
-    @user.before_create
-    @user.confirmation_key.key.should eql User.encrypt(@user.email, @user.password_salt)
+    lambda do
+      @user.before_create
+    end.should change(ConfirmationKey, :count).by(1)
+
+    ConfirmationKey.find_by_key(User.encrypt(@user.email, @user.password_salt)).should be_true
   end
 end
