@@ -55,4 +55,11 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET 'confirm'" do
+    it "should be successful" do
+      get 'confirm'
+      response.should be_success
+    end
+  end
 end

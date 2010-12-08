@@ -28,6 +28,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm
+  end
+
 #  def index
 #      @users = User.all
 #
