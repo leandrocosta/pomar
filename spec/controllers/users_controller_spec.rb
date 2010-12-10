@@ -80,15 +80,18 @@ describe UsersController do
       end
     end
 
-    #describe "success" do
-    #  before do
-    #    ConfirmationKey.create!( :key => "1" )
-    #  end
+    describe "success" do
+      before(:each) do
+        ConfirmationKey.create!( :key => "1234567890123456789012345678901234567890" )
+      end
 
-    #  it "should confirm a valid key" do
-    #    visit 'confirm?key=1'
-    #    page.should have_content 'Your account was confirmated'
-    #  end
-    #end
+      it "should confirm a valid key" do
+        lambda do
+          visit 'confirm?key=1234567890123456789012345678901234567890'
+        end.should change(ConfirmationKey, :count)
+
+        page.should have_content 'Your account was confirmed!'
+      end
+    end
   end
 end

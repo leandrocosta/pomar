@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   #has_one :confirmation_key
 
-  attr_accessor :password, :password_confirmation, :hashed_password, :password_salt, :confirmation_key
-  attr_protected :hashed_password, :password_salt
+  attr_accessor :password, :password_confirmation, :hashed_password, :password_salt#, :confirmation_key
+  attr_protected :hashed_password#, :password_salt
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
