@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20101206024246) do
 
   create_table "confirmation_keys", :force => true do |t|
     t.string   "key",        :limit => 40
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -22,7 +23,8 @@ ActiveRecord::Schema.define(:version => 20101206024246) do
     t.string   "name",            :limit => 60
     t.string   "email",           :limit => 60
     t.string   "username",        :limit => 60
-    t.string   "hashed_password", :limit => 60
+    t.string   "hashed_password", :limit => 40
+    t.boolean  "confirmed",                     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_salt",   :limit => 40

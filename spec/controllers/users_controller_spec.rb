@@ -82,15 +82,31 @@ describe UsersController do
 
     describe "success" do
       before(:each) do
-        ConfirmationKey.create!( :key => "1234567890123456789012345678901234567890" )
+        #User.destroy_all
+		#ConfirmationKey.destroy_all
+        @user = User.create!( :name => "John", :email => "john@sub.domain", :username => "john", :password => "johnjohn", :password_confirmation => "johnjohn" )
+        key = ConfirmationKey.create!( :key => "1234567890123456789012345678901234567890" )
+		key.user = @user
+		key.save
       end
 
       it "should confirm a valid key" do
         lambda do
           visit 'confirm?key=1234567890123456789012345678901234567890'
-        end.should change(ConfirmationKey, :count)
+        end.should change(ConfirmationKey, :count).by(-1)
 
         page.should have_content 'Your account was confirmed!'
+        ConfirmationKey.find_by_key("1234567890123456789012345678901234567890").should be_nil
+        #User.find(1).enabled.should be_true
+		#User.find(1).should_not be_nil
+		#User.find(1).enabled.should be_true
+        #user = User.find(1);
+        #e = user.enabled
+        #e.should be_true
+        #@user.enabled.should be_true
+		@user.reload
+		@user.name.should eql 'John'
+        @user.confirmed.should be_true
       end
     end
   end

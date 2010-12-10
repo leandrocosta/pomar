@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
-  #has_one :confirmation_key
-
-  attr_accessor :password, :password_confirmation, :hashed_password, :password_salt#, :confirmation_key
+  attr_accessor :password, :password_confirmation, :hashed_password, :password_salt, :confirmed
   attr_protected :hashed_password#, :password_salt
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -18,7 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def before_update
-    @hashed_password = User.encrypt(@password, @password_salt)
+    @hashed_password = User.encrypt(@password, @password_salt) unless @password.blank?
   end
 
   def make_salt
