@@ -29,6 +29,16 @@ class UsersController < ApplicationController
   end
 
   def confirm
+    #flash.now[:notice] = 'Confirmation key required!' if params[:key].blank?
+    #flash.now[:notice] = 'Invalid confirmation key!' unless ConfirmationKey.exists?(params[:key])
+
+    if params[:key].blank?
+      flash.now[:notice] = 'Confirmation key required!'
+    else
+      unless ConfirmationKey.exists?(params[:key])
+        flash.now[:notice] = 'Error: The confirmation key is invalid!'
+      end
+    end
   end
 
 #  def index

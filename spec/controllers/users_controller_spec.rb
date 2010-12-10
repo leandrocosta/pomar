@@ -58,8 +58,37 @@ describe UsersController do
 
   describe "GET 'confirm'" do
     it "should be successful" do
-      get 'confirm'
-      response.should be_success
+      #get 'confirm'
+      #response.should be_success
+      visit 'confirm'
+      page.status_code.should == 200
     end
+
+    describe "failure" do
+      before(:each) do
+        ConfirmationKey.destroy_all
+      end
+
+      it "should look for parameter key in querystring" do
+        visit 'confirm'
+        page.should have_content 'Confirmation key required!'
+      end
+
+      it "should look for parameter key in database" do
+        visit 'confirm?key=1'
+        page.should have_content 'Error: The confirmation key is invalid!'
+      end
+    end
+
+    #describe "success" do
+    #  before do
+    #    ConfirmationKey.create!( :key => "1" )
+    #  end
+
+    #  it "should confirm a valid key" do
+    #    visit 'confirm?key=1'
+    #    page.should have_content 'Your account was confirmated'
+    #  end
+    #end
   end
 end
