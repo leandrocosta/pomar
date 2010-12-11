@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  before_create :make_hashed_password
+  before_update :make_hashed_password
+  after_create :create_confirmation_key
+
   attr_accessor :password, :password_confirmation # needed because they don't exist in database
   attr_protected :hashed_password, :sha1_salt, :confirmed
 
@@ -9,19 +13,15 @@ class User < ActiveRecord::Base
   validates :username,  :presence => true, :length => { :maximum => 60 }, :uniqueness => { :case_sensitive => false }
   validates :password,  :presence => true, :confirmation => true, :length => { :within => 6..20 }
 
-  def before_create
+  def make_hashed_password
     make_salt if self.sha1_salt.blank?
     self.hashed_password = User.encrypt(@password, self.sha1_salt) unless @password.blank?
   end
 
-  def after_create
+  def create_confirmation_key
     key = ConfirmationKey.create!(:key => User.encrypt(self.email, self.sha1_salt))
     key.user = self
     key.save
-  end
-
-  def before_update
-    self.hashed_password = User.encrypt(@password, self.sha1_salt) unless @password.blank?
   end
 
   def make_salt

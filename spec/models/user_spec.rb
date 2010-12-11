@@ -55,15 +55,15 @@ describe User do
   end
 
   it "should hash the password with a salt before create" do
-    @user.before_create
+    @user.save
     @user.hashed_password.should eql User.encrypt(@user.password, @user.sha1_salt)
   end
 
   it "should hash the password with a salt before update" do
-    @user.before_create
+    @user.save
     @user.password = 'new password'
     @user.password_confirmation = 'new password'
-    @user.before_update
+    @user.save
     @user.hashed_password.should eql User.encrypt(@user.password, @user.sha1_salt)
   end
 
