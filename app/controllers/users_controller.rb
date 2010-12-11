@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         user = key.user
         user.confirmed = true
 
-        if user.save(false) # active record should not validate fields, because password and password_confirmation don't exist now
+        if user.save(:validate => false) # active record should not validate fields, because password and password_confirmation don't exist now
           key.destroy
           flash.now[:notice] = 'Your account was confirmed!'
         else

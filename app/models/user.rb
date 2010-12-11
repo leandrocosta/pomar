@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   validates :password,  :presence => true, :confirmation => true, :length => { :within => 6..20 }
 
   def make_hashed_password
-    make_salt if self.sha1_salt.blank?
-    self.hashed_password = User.encrypt(@password, self.sha1_salt) unless @password.blank?
+    unless @password.blank?
+      make_salt if self.sha1_salt.blank?
+      self.hashed_password = User.encrypt(@password, self.sha1_salt)
+    end
   end
 
   def create_confirmation_key
