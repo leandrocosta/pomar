@@ -56,7 +56,7 @@ describe User do
 
   it "should hash the password with a salt before create" do
     @user.before_create
-    @user.hashed_password.should eql User.encrypt(@user.password, @user.password_salt)
+    @user.hashed_password.should eql User.encrypt(@user.password, @user.sha1_salt)
   end
 
   it "should hash the password with a salt before update" do
@@ -64,14 +64,14 @@ describe User do
     @user.password = 'new password'
     @user.password_confirmation = 'new password'
     @user.before_update
-    @user.hashed_password.should eql User.encrypt(@user.password, @user.password_salt)
+    @user.hashed_password.should eql User.encrypt(@user.password, @user.sha1_salt)
   end
 
-  it "should create a confirmation key before create" do
+  it "should create a confirmation key after create" do
     lambda do
-      @user.before_create
+      @user.save
     end.should change(ConfirmationKey, :count).by(1)
 
-    ConfirmationKey.find_by_key(User.encrypt(@user.email, @user.password_salt)).should be_true
+    ConfirmationKey.find_by_key(User.encrypt(@user.email, @user.sha1_salt)).should be_true
   end
 end

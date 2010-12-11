@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessor :password, :password_confirmation, :hashed_password, :password_salt, :confirmed
-  attr_protected :hashed_password#, :password_salt
+  attr_accessor :password, :password_confirmation # needed because they don't exist in database
+  attr_protected :hashed_password, :sha1_salt, :confirmed
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -10,17 +10,22 @@ class User < ActiveRecord::Base
   validates :password,  :presence => true, :confirmation => true, :length => { :within => 6..20 }
 
   def before_create
-    make_salt if @password_salt.blank?
-    ConfirmationKey.create!(:key => User.encrypt(self.email, @password_salt))
-    @hashed_password = User.encrypt(@password, @password_salt)
+    make_salt if self.sha1_salt.blank?
+    self.hashed_password = User.encrypt(@password, self.sha1_salt) unless @password.blank?
+  end
+
+  def after_create
+    key = ConfirmationKey.create!(:key => User.encrypt(self.email, self.sha1_salt))
+    key.user = self
+    key.save
   end
 
   def before_update
-    @hashed_password = User.encrypt(@password, @password_salt) unless @password.blank?
+    self.hashed_password = User.encrypt(@password, self.sha1_salt) unless @password.blank?
   end
 
   def make_salt
-    @password_salt = self.username + Time.now.to_s
+    self.sha1_salt = Digest::SHA1.hexdigest(self.username + Time.now.to_s)
   end
 
   def self.encrypt(password, salt)

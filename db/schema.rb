@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20101206024246) do
     t.string   "email",           :limit => 60
     t.string   "username",        :limit => 60
     t.string   "hashed_password", :limit => 40
+    t.string   "sha1_salt",       :limit => 40
     t.boolean  "confirmed",                     :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_salt",   :limit => 40
   end
 
 end

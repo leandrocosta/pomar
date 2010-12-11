@@ -5,7 +5,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    #@user = User.new(params[:user])
+    @user = User.new
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
+    @user.username = params[:user][:username]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
 
     respond_to do |format|
       if @user.save
@@ -36,11 +42,15 @@ class UsersController < ApplicationController
         flash.now[:notice] = 'Error: The confirmation key is invalid!'
       else
         key = ConfirmationKey.find_by_key(params[:key])
-		user = key.user
-		user.confirmed = true
-		user.save
-        key.delete
-        flash.now[:notice] = 'Your account was confirmed!'
+        user = key.user
+        user.confirmed = true
+
+        if user.save(false) # active record should not validate fields, because password and password_confirmation don't exist now
+          key.destroy
+          flash.now[:notice] = 'Your account was confirmed!'
+        else
+          flash.now[:notice] = 'Error: It was not possible to confirm the user!'
+        end
       end
     end
   end
