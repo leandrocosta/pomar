@@ -1,6 +1,6 @@
 Feature: Sign Up confirmation
   In order to complete my registration
-  As a user
+  As a not confirmed user
   I need to be able to confirm my account
 
   Scenario: Confirm account with invalid key
