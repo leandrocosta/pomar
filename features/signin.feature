@@ -9,3 +9,8 @@ Feature: Sign In!
     Then I should see "Sign in to pomar!"
     And I should see "Username"
     And I should see "Password"
+
+  Scenario: Sign in with invalid values for fields
+    Given I am on the signin page
+    When I press "Login"
+    Then I should see "Invalid username/password combination"

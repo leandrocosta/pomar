@@ -9,6 +9,8 @@
 </head>
 <body>
 
+  <%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+
 <%= yield %>
 
 </body>

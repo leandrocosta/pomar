@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
+    if (params[:username].blank? || params[:password].blank?)
+      flash.now[:alert] = "Invalid username/password combination"
+      render :action => 'new'
+    end
   end
 
   def destroy
