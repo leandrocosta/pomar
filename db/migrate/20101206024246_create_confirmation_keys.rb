@@ -5,6 +5,8 @@ class CreateConfirmationKeys < ActiveRecord::Migration
       t.belongs_to :user
       t.timestamps
     end
+
+    add_index :confirmation_keys, :key
   end
 
   def self.down

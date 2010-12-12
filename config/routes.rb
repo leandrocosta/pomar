@@ -1,7 +1,10 @@
 Pomar::Application.routes.draw do
   resources :users
+  resources :sessions
+
   match '/signup', :to => 'users#new'
   match '/confirm', :to => 'users#confirm', :as => 'confirm'
+  match '/signin', :to => 'sessions#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
