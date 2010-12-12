@@ -1,0 +1,12 @@
+Sign in to pomar!
+
+  <%= form_tag(:action => 'create') do %>
+
+  <%= label_tag :username %><br />
+  <%= text_field_tag :username %><br />
+
+  <%= label_tag :password %><br />
+  <%= text_field_tag :password %><br />
+
+  <%= submit_tag 'Login' %>
+<% end %>
