@@ -14,3 +14,11 @@ Feature: Sign In!
     Given I am on the signin page
     When I press "Login"
     Then I should see "Invalid username/password combination"
+
+  Scenario: Sign in with valid values for fields
+    Given I am on the signin page
+    And there is a confirmed user with username "u" and password "pppppp"
+    When I fill in "Username" with "u"
+    And I fill in "Password" with "pppppp"
+    And I press "Login"
+    Then I should see "Welcome to pomar!"
