@@ -1,10 +1,13 @@
 Pomar::Application.routes.draw do
+  get "main/index"
+
   resources :users
   resources :sessions
 
   match '/signup', :to => 'users#new'
   match '/confirm', :to => 'users#confirm', :as => 'confirm'
   match '/signin', :to => 'sessions#new'
+  match '/main', :to => 'main#index', :as => 'main'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

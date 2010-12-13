@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       flash.now[:alert] = "Invalid username/password combination"
       render :action => 'new'
     else
-      redirect_to "/", :notice => "You are logged!"
+      redirect_to main_path, :notice => "You are logged in!"
     end
   end
 

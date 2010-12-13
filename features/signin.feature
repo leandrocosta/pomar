@@ -1,6 +1,6 @@
 Feature: Sign In!
   In order to get access to pomar
-  As a user
+  As a registered user
   I need to be able to sign in
 
   Scenario: Access sign in page
@@ -16,9 +16,9 @@ Feature: Sign In!
     Then I should see "Invalid username/password combination"
 
   Scenario: Sign in with valid values for fields
-    Given I am on the signin page
-    And there is a confirmed user with username "u" and password "pppppp"
+    Given there is a confirmed user with username "u" and password "pppppp"
+    And I am on the signin page
     When I fill in "Username" with "u"
     And I fill in "Password" with "pppppp"
     And I press "Login"
-    Then I should see "Welcome to pomar!"
+    Then I should see "You are logged in!"
