@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20101211220949) do
     t.datetime "updated_at"
   end
 
+  add_index "confirmation_keys", ["key"], :name => "index_confirmation_keys_on_key"
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"

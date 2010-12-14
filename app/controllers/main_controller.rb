@@ -1,5 +1,6 @@
 class MainController < ApplicationController
-  def index
-  end
+	before_filter :authenticate
 
+	def index
+	end
 end

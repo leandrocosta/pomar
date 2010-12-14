@@ -8,10 +8,13 @@ class SessionsController < ApplicationController
       flash.now[:alert] = "Invalid username/password combination"
       render :action => 'new'
     else
+		session[:user_id] = 1
       redirect_to main_path, :notice => "You are logged in!"
     end
   end
 
   def destroy
+	  reset_session
+	  redirect_to '/', :notice => "Your are logged out"
   end
 end
