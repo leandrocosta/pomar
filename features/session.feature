@@ -7,3 +7,8 @@ Feature: Session handling
     Given I am not logged in
     When I access private area
     Then I should see "You are not logged in!"
+
+  Scenario: Access private area with a session
+    Given I am logged in
+    When I access private area
+    Then I should see "Private area!"
