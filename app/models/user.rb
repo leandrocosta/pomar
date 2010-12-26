@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	has_one :confirmation_key, :dependent => :destroy
+
 	before_create :make_hashed_password
 	before_update :make_hashed_password
 	after_create :create_confirmation_key
@@ -8,10 +10,10 @@ class User < ActiveRecord::Base
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-	validates :name,      :presence => true, :length => { :maximum => 60 }
-	validates :email,     :presence => true, :length => { :maximum => 60 }, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
-	validates :username,  :presence => true, :length => { :maximum => 60 }, :uniqueness => { :case_sensitive => false }
-	validates :password,  :presence => true, :confirmation => true, :length => { :within => 6..20 }
+	validates :name,		:presence => true, :length => { :maximum => 60 }
+	validates :email,		:presence => true, :length => { :maximum => 60 }, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
+	validates :username,	:presence => true, :length => { :maximum => 60 }, :uniqueness => { :case_sensitive => false }
+	validates :password,	:presence => true, :confirmation => true, :length => { :within => 6..20 }
 
 	def make_hashed_password
 		unless @password.blank?
