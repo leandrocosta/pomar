@@ -2,6 +2,6 @@ class MainController < ApplicationController
 	before_filter :authenticate
 
 	def index
-		@user = User.find_by_id(session[:user_id])
+		@title = 'Pomar!'
 	end
 end

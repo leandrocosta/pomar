@@ -6,7 +6,7 @@ describe MainController do
 	describe "failure" do
 		describe "GET 'index'" do
 			it "should not be successful" do
-				get 'index'
+				get :index
 				response.should_not be_success
 			end
 		end
@@ -26,12 +26,10 @@ describe MainController do
 
 		describe "GET 'index'" do
 			it "should be successful" do
-				#get 'index'
-				#response.should be_success
-				#response.should have_selector('a', :href => '/users/' + @user.id.to_s + '/edit', :content => 'Account Settings')
-				visit 'index'
-				page.status_code.should == 200
-				page.should have_content 'You are logged in'
+				get :index
+				response.should be_success
+				response.should have_selector('title', :content => 'Pomar!')
+				response.should have_selector('a', :href => '/users/' + @user.id.to_s + '/edit', :content => 'Account Settings')
 			end
 		end
 	end
