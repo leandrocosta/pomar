@@ -16,6 +16,11 @@ require 'cucumber/web/tableish'
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
+
+# Make sure this require is after you require cucumber/rails/world.
+require 'email_spec' # add this line if you use spork
+require 'email_spec/cucumber'
+
 # According to https://rspec.lighthouseapp.com/projects/16211-cucumber/tickets/674:
 # jnicklas of capybara reports that it's a problem where cucumber monkey-patches a Capybara method which no longer exists.
 # And suggests that commenting out the following like in env.rb fixes the problem:
