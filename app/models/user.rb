@@ -13,7 +13,11 @@ class User < ActiveRecord::Base
 	validates :name,		:presence => true, :length => { :maximum => 60 }
 	validates :email,		:presence => true, :length => { :maximum => 60 }, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
 	validates :username,	:presence => true, :length => { :maximum => 60 }, :uniqueness => { :case_sensitive => false }
-	validates :password,	:presence => true, :confirmation => true, :length => { :within => 6..20 }
+	validates :password,	:presence => true, :confirmation => true, :length => { :within => 6..20 }, :if => :password_validation_required?
+
+	def password_validation_required?
+		self.hashed_password.blank? or not @password.blank?
+	end
 
 	def make_hashed_password
 		unless @password.blank?
