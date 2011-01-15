@@ -1,6 +1,6 @@
 Account | <%= link_to "Password", "/users/" + current_user.id.to_s + "/password" %>
 
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 <%= form_for(current_user) do |f| %>
 	<%= hidden_field_tag :setting, 'edit' %>
