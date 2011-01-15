@@ -5,5 +5,5 @@ Feature: Account settings control
 
 	Scenario: Access account settings area
 		Given I am logged in
-		When I follow "Account Settings"
-		Then I should see "Change Password"
+		When I follow "Settings"
+		Then I should see "Password"

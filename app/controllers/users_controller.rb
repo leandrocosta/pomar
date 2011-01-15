@@ -64,4 +64,24 @@ class UsersController < ApplicationController
 	def edit
 		@user = User.find(params[:id])
 	end
+
+	def password
+		@user = User.find(params[:id])
+	end
+
+	def update
+		@user = User.find(params[:id])
+		RAILS_DEFAULT_LOGGER.error('setting: ' + params[:setting] + "\n")
+		RAILS_DEFAULT_LOGGER.error('params[:user]: ' + params[:user].collect { |k,v| "[#{k},#{v}]"}.join + "\n")
+
+		respond_to do |format|
+			if @user.update_attributes(params[:user])
+				flash.now[:notice] = 'Your account was updated!'
+				format.html { render :action => params[:setting] }
+			else
+				RAILS_DEFAULT_LOGGER.error('update_attributes error!!!')
+				format.html { render :action => params[:setting] }
+			end
+		end
+	end
 end

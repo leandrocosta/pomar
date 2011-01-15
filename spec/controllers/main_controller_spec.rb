@@ -29,7 +29,7 @@ describe MainController do
 				get :index
 				response.should be_success
 				response.should have_selector('title', :content => 'Pomar!')
-				response.should have_selector('a', :href => '/users/' + @user.id.to_s + '/edit', :content => 'Account Settings')
+				response.should have_selector('a', :href => '/users/' + @user.id.to_s + '/edit', :content => 'Settings')
 			end
 		end
 	end
