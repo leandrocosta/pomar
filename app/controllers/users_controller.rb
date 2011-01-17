@@ -25,8 +25,9 @@ class UsersController < ApplicationController
 				format.xml  { render :xml => @user, :status => :created, :location => @user }
 			else
 				@title = "Pomar: Sign Up!"
+				flash.now[:alert] = @user.errors.full_messages[0]
 				format.html { render :action => "new" }
-				format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+				#format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
 			end
 		end
 	end
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
 			flash.now[:notice] = 'Confirmation key required!'
 		else
 			unless ConfirmationKey.exists?(:key => params[:key]) then
-				flash.now[:notice] = 'Error: The confirmation key is invalid!'
+				flash.now[:alert] = 'Error: The confirmation key is invalid!'
 			else
 				key = ConfirmationKey.find_by_key(params[:key])
 				user = key.user
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
 					key.destroy
 					flash.now[:notice] = 'Your account was confirmed!'
 				else
-					flash.now[:notice] = 'Error: It was not possible to confirm the user!'
+					flash.now[:alert] = 'Error: It was not possible to confirm the user!'
 				end
 			end
 		end

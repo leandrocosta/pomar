@@ -1,12 +1,25 @@
-Sign in to pomar!
-
-  <%= form_tag(:action => 'create') do %>
-
-  <%= label_tag :username %><br />
-  <%= text_field_tag :username %><br />
-
-  <%= label_tag :password %><br />
-  <%= text_field_tag :password %><br />
-
-  <%= submit_tag 'Login' %>
-<% end %>
+<div id="sign-in">
+	<%= form_tag(:action => 'create') do %>
+		<table align="center" width="100%">
+			<tr>
+				<td align="right"><%= label_tag :username %></td>
+				<td align="left"><%= text_field_tag :username %></td>
+			</tr>
+			<tr>
+				<td align="right"><%= label_tag :password %></td>
+				<td align="left"><%= text_field_tag :password %></td>
+			</tr>
+			<tr>
+				<td align="right">
+					<%= submit_tag 'Login' %>
+				</td>
+				<td>
+					Forgot password?
+				</td>
+			</tr>
+		</table>
+		<div id="alert">
+			<%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+		</div>
+	<% end %>
+</div>

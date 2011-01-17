@@ -1,0 +1,44 @@
+div {
+	border: 1px solid;
+	padding: 5px;
+}
+
+div#left {
+	float: left;
+}
+
+div#right {
+	float: right;
+}
+
+div#clear {
+	clear: both;
+	border: 0px;
+	padding: 0px;
+}
+
+div#container {
+	background-color: #EEEEEE;
+	width: 1200px;
+	margin: auto;
+}
+
+div#top {
+	background-color: #CCCCCC;
+}
+
+div#middle {
+	background-color: #AAAAAA;
+}
+
+div#bottom {
+	background-color: #888888;
+}
+
+div#alert {
+	height: 20px;
+}
+
+p.alert {
+	margin: 0px;
+}

@@ -1,0 +1,31 @@
+div#sign-in {
+	margin: auto;
+	width: 400px;
+}
+
+div#title {
+	text-align: center;
+}
+
+div#fields {
+	text-align: center;
+}
+div#submit {
+	text-align: left;
+}
+
+table {
+	/*
+	border: 1px solid;
+	*/
+}
+
+tr {
+	/*
+	border: 1px solid;
+	*/
+}
+
+td {
+	padding: 10px;
+}

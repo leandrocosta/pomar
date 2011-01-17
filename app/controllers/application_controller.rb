@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def access_denied
-	  redirect_to signin_path, :notice => "You are not logged in!" and return false
+	  redirect_to signin_path, :alert => "You are not logged in!" and return false
   end
 end
