@@ -11,4 +11,4 @@ Feature: Session handling
   Scenario: Access private area with a session
     Given I am logged in
     When I access private area
-    Then I should see "Private area!"
+    Then I should see "logged in as"

@@ -1,3 +1,9 @@
-User account confirmation!
-
-<p id="notice"><%= notice %></p>
+<div id="confirm">
+	<% if alert.present? %>
+		<div id="alert">
+			<%= content_tag :p, alert, :class => 'alert' if alert.present? %>
+		</div>
+	<% else %>
+		<p id="notice"><%= notice %></p>
+	<% end %>
+</div>

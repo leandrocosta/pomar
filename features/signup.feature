@@ -6,8 +6,7 @@ Feature: Sign Up!
 	Scenario: Access sign up page
 		Given I am on the home page
 		When I follow "Sign Up"
-		Then I should see "Sign up to pomar!"
-		And I should see "Name"
+		Then I should see "Name"
 		And I should see "E-mail"
 		And I should see "Username"
 		And I should see "Password"
@@ -17,10 +16,6 @@ Feature: Sign Up!
 		Given I am on the signup page
 		When I press "Create user"
 		Then I should see "Name can't be blank"
-		And I should see "Email can't be blank"
-		And I should see "Username can't be blank"
-		And I should see "Password can't be blank"
-		And I should see "Password is too short"
 
 	Scenario: Registering with invalid e-mail
 		Given I am on the signup page

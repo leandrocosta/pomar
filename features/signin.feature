@@ -6,8 +6,7 @@ Feature: Sign In!
   Scenario: Access sign in page
     Given I am on the home page
     When I follow "Sign In"
-    Then I should see "Sign in to pomar!"
-    And I should see "Username"
+    Then I should see "Username"
     And I should see "Password"
 
   Scenario: Sign in with invalid values for fields
@@ -21,4 +20,4 @@ Feature: Sign In!
     When I fill in "Username" with "u"
     And I fill in "Password" with "pppppp"
     And I press "Login"
-    Then I should see "You are logged in!"
+    Then I should see "logged in as"
