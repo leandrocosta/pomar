@@ -27,9 +27,10 @@ class User < ActiveRecord::Base
 	end
 
 	def create_confirmation_key
-		key = ConfirmationKey.create!(:key => User.encrypt(self.email, self.sha1_salt))
-		key.user = self
-		key.save
+		#key = ConfirmationKey.create!(:key => User.encrypt(self.email, self.sha1_salt))
+		#key.user = self
+		#key.save
+		key = ConfirmationKey.create!(:user => self, :key => User.encrypt(self.email, self.sha1_salt))
 	end
 
 	def make_salt

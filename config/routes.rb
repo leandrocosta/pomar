@@ -3,6 +3,7 @@ Pomar::Application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :projects
 
   match '/signup', :to => 'users#new', :as => 'signup'
   match '/confirm', :to => 'users#confirm', :as => 'confirm'

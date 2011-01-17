@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ConfirmationKey do
-  before do
+  before(:each) do
     @confirmation_key = ConfirmationKey.new
   end
 
