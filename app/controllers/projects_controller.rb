@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.xml
   def index
     @projects = Project.all
+	@project = Project.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,19 +36,29 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    @projects = Project.all
+    respond_to do |format|
+		format.html { render :action => "index" }
+	end
   end
 
   # POST /projects
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
+	@project.user_id = current_user.id
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to(@project, :notice => 'Project was successfully created.') }
-        format.xml  { render :xml => @project, :status => :created, :location => @project }
+        #format.html { redirect_to(@project, :notice => 'Project was successfully created.') }
+        #format.xml  { render :xml => @project, :status => :created, :location => @project }
+        #format.html { render :action => "index" }
+		@project = Project.new
+		@projects = Project.all
+        format.html { render :action => "index" }
       else
-        format.html { render :action => "new" }
+        #format.html { render :action => "new" }
+        format.html { render :action => "index" }
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end
@@ -60,10 +71,14 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
-        format.xml  { head :ok }
+        #format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
+        #format.xml  { head :ok }
+		@project = Project.new
+    	@projects = Project.all
+        format.html { render :action => "index" }
       else
-        format.html { render :action => "edit" }
+        #format.html { render :action => "edit" }
+        format.html { render :action => "index" }
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end
@@ -76,8 +91,11 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to(projects_url) }
-      format.xml  { head :ok }
+      #format.html { redirect_to(projects_url) }
+      #format.xml  { head :ok }
+      @projects = Project.all
+	  @project = Project.new
+	  format.html { render :action => "index" }
     end
   end
 end
