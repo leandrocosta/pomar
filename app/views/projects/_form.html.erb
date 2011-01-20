@@ -22,4 +22,8 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <div class="actions">
+	  <%= link_to 'Cancel', projects_path unless @project.id.blank? %>
+	  <%= link_to 'Clear', projects_path if @project.id.blank? %>
+  </div>
 <% end %>

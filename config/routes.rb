@@ -11,6 +11,7 @@ Pomar::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
   match '/main', :to => 'main#index', :as => 'main'
   match '/users/:id/password', :to => 'users#password', :as => 'password'
+  match '/main/project/:id', :to => 'main#project'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
