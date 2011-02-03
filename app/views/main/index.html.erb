@@ -1,13 +1,17 @@
 <div id="left" style="width: 250px;">
-	<% @projects.each do |project| %>
-		<%= link_to project.name, :controller => 'main', :action => 'project', :id => project.id %><br />
+	<% session[:projects].each do |project| %>
+		<%= link_to project.name, :controller => 'main', :action => 'project', :id => project.id %>
+		<% if project == session[:project] %>
+			*
+		<% end %>
+		<br />
 	<% end %>
 </div>
 
 <div id="right" style="height: 100%; width: 914px;">
 	<div id="left"style="width: 655px;">
 		Project: <%= @project.name unless @project.blank? %><br />
-		<% @project.tasks.each do |task| %>
+		<% session[:project].tasks.each do |task| %>
 			<%= task.name %><br />
 		<% end %>
 	</div>
