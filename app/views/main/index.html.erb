@@ -7,23 +7,14 @@
 <div id="right" style="height: 100%; width: 914px;">
 	<div id="left"style="width: 655px;">
 		Project: <%= @project.name unless @project.blank? %><br />
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!<br/>
-		Tasks!
+		<% @project.tasks.each do |task| %>
+			<%= task.name %><br />
+		<% end %>
 	</div>
 	<div id="right" style="width: 230px;">
-		TODO<br/>
-		TODO<br/>
-		TODO<br/>
-		TODO<br/>
-		TODO
+		<% @todos.each do |todo| %>
+		<%= todo.name %><br/>
+		<% end %>
 	</div>
 	<div id="clear" style="height: 5px;"></div>
 	<div style="height: 80px;">

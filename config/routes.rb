@@ -1,4 +1,6 @@
 Pomar::Application.routes.draw do
+  resources :tasks
+
   get "main/index"
 
   resources :users
